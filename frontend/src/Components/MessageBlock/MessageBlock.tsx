@@ -21,7 +21,7 @@ const MessageBlock = () => {
 				fetchData(url).catch(e => console.error(e))
 			}, 2000)
 
-		}, []);
+		}, [url]);
 		return (
 			<div>
 				{(posts.length < 1)? <h1>There is no posts yet</h1> : posts.map((item, index) => (
