@@ -12,6 +12,7 @@ const PostBlock: React.FC<PostsResponse> = ({index, datetime,message, author}) =
 
 	const differanceByDays = dayjs(datetime).date() - dayjs(today).date();
 	const differanceByYears = dayjs(datetime).year() - dayjs(today).year();
+	const differanceByMonth = dayjs(datetime).month() - dayjs(today).month();
 
 
 	if (differanceByDays === 0){
@@ -19,9 +20,8 @@ const PostBlock: React.FC<PostsResponse> = ({index, datetime,message, author}) =
 	}
 	if (differanceByDays === -1){
 		date = 'Yesterday'
-		console.log(differanceByDays);
 	}
-	if (differanceByDays < -1){
+	if (differanceByDays < -1 || differanceByMonth < -1){
 		date = dayjs(datetime).format('DD.MM')
 	}
 	if (differanceByYears <= -1){
