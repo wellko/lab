@@ -4,12 +4,14 @@ import {Avatar, Grid, Card, Box, Typography} from "@mui/material";
 import dayjs from "dayjs";
 
 const PostBlock: React.FC<PostsResponse> = ({index, datetime,message, author}) => {
+
 	const now = new Date();
 	const today = now.toISOString();
 	let date = '';
 
-	const differanceByDays = dayjs(datetime).diff(dayjs(today), 'd');
-	const differanceByYears = dayjs(datetime).diff(dayjs(today), 'y')
+
+	const differanceByDays = dayjs(datetime).date() - dayjs(today).date();
+	const differanceByYears = dayjs(datetime).year() - dayjs(today).year();
 
 
 	if (differanceByDays === 0){
@@ -17,6 +19,7 @@ const PostBlock: React.FC<PostsResponse> = ({index, datetime,message, author}) =
 	}
 	if (differanceByDays === -1){
 		date = 'Yesterday'
+		console.log(differanceByDays);
 	}
 	if (differanceByDays < -1){
 		date = dayjs(datetime).format('DD.MM')
